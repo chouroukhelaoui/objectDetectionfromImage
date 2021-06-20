@@ -1,6 +1,5 @@
 #!/bin/sh
 inputFile=${1}
-outfiletxt=${2}
-outfileimg=${3}
+outfile=${2}
 
-python /input/script.py --inputFile ${inputFile} --outputFolderTxt ${outfiletxt} --outputFolderImg ${outfileimg}
+python /input/script.py --inputFile ${inputFile} --outputFolder ${outfile} 

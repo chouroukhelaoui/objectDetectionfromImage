@@ -3,12 +3,10 @@ import sys, getopt, argparse
 import matplotlib.pyplot as plt # pip install matplotlib
 parser = argparse.ArgumentParser()
 parser.add_argument('--inputFile', type=str)
-parser.add_argument('--outputFolderImg', type=str)
-parser.add_argument('--outputFolderTxt', type=str)
+parser.add_argument('--outputFolder', type=str)
 args = parser.parse_args()
 inputfile = args.inputFile
-outputfiletxt = args.outputFolderTxt
-outputfileimg = args.outputFolderImg
+outputfile = args.outputFolder
 config_file = '/input/ssd_mobilenet_v3_large_coco_2020_01_14.pbtxt'
 frozen_model = '/input/frozen_inference_graph.pb'
 model = cv2.dnn_DetectionModel(frozen_model,config_file)
@@ -39,7 +37,7 @@ for ClassInd , conf , boxes in zip(ClassIndex.flatten() , confidece.flatten() , 
     arr.append(classLabels[ClassInd - 1])
     cv2.putText(img,classLabels[ClassInd - 1],(boxes[0]+10 , boxes[1]+40) , font , fontScale = font_scale , color=(0,255,0),thickness = 3)
 plt.imshow(cv2.cvtColor(img,cv2.COLOR_BGR2RGB))
-plt.savefig(outputfileimg+'/resultimg.png')
+plt.savefig(outputfile+'/resultimg.png')
 file1 = open(file_name, 'r')
 Lines = file1.readlines()
 for line in Lines:
@@ -58,6 +56,6 @@ for ari in arr2:
         vstro = str(ari) + " X " + arr3[i]
         print(vstro)
         arr4.append(vstro)
-with open(outputfiletxt+"/resulttxt.txt", 'w') as ofile:
+with open(outputfile+"/resulttxt.txt", 'w') as ofile:
     for line in arr4:
         ofile.writelines(line+"\n")
