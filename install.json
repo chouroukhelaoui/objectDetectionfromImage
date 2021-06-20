@@ -1,0 +1,82 @@
+{
+	"general": {
+		"name": "Object Detection From Image",
+		"description": "Detect objects from image with number of object",
+		"developer": "Maaloul Mohamed Zied",
+		"affiliation": "Docetis Sarl",
+		"email": "zied.maaloul@docetis.com",
+		"author": "Maaloul Mohamed Zied",
+		"website": "https://github.com/tesseract-ocr/tesseract",
+		"type": "ocr",
+		"license": "Other",
+		"ownsCopyright": "1"
+	},
+	"input": [
+		{
+			"file": {
+				"name": "inputFile",
+				"description": "The input image to detect",
+				"options": {
+					"required": true,
+					"mimeTypes": {
+						"allowed": [
+							"image/jpeg",
+							"image/png",
+							"image/tiff"
+						],
+						"default": "image/png"
+					}
+				}
+			}
+		},
+		{
+			"outputFolderTxt": {}
+		},
+        {
+			"outputFolderImg": {}
+		}
+	],
+	"output": [
+				{
+			"file": {
+				"name": "resultimg",
+				"description": "the object detected",
+				"options": {
+                    "filename":"resultimg.img",
+					"mimeTypes": {
+						"allowed": [
+							"image/jpeg",
+							"image/png",
+							"image/tiff"
+						],
+						"default": "image/png"
+					},
+					"visualization": false
+				}
+			}
+		},
+			{
+			"file": {
+				"name": "resulttxt",
+				"description": "list of objects",
+				"options": {
+                    "filename":"resulttxt.txt",
+					"mimeTypes": {
+						"allowed": [
+							"text/plain"
+						],
+						"default": "text/plain"
+					},
+					"visualization": false
+				}
+			}
+		}
+	],
+	"method": {
+		"imageType": "docker",
+		"imageName": "maaloulmz/objectdetectionfromimage",
+		"testData": "https://www.dropbox.com/s/61m7s00ixfkw2zk/inputFile.jpeg?dl=1",
+		"executableType": "bash",
+		"executable_path": "/input/script.sh"
+	}
+}
